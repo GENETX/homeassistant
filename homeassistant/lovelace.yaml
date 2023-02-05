@@ -1,0 +1,1767 @@
+views:
+  - theme: Backend-selected
+    title: Thuis
+    path: home
+    icon: mdi:home
+    badges: []
+    cards:
+      - type: custom:stack-in-card
+        cards:
+          - type: entities
+            state_color: true
+            title: Huis
+            icon: mdi:home
+            show_header_toggle: false
+            entities:
+              - type: divider
+              - entity: person.gerwin_hoogsteen
+                name: Auto
+                secondary_info: '[[ person.gerwin_hoogsteen ]]'
+                extend_paper_buttons_row:
+                  hide_state: true
+                  position: right
+                  buttons:
+                    - entity: input_boolean.auto_runlevel
+                      name: Runlevel
+                      tap_action:
+                        action: toggle
+                    - entity: input_boolean.automations_aan
+                      name: Automation
+                      tap_action:
+                        action: toggle
+              - entity: input_select.status
+                icon: mdi:state-machine
+                name: ' '
+                extend_paper_buttons_row:
+                  hide_state: true
+                  position: right
+                  buttons:
+                    - entity: input_select.status
+                      name: false
+                      icon: mdi:map-marker-off-outline
+                      tap_action:
+                        action: call-service
+                        service: input_select.select_option
+                        service_data:
+                          option: Weg
+                          entity_id: input_select.status
+                      styles:
+                        button:
+                          color: >-
+                            {% if is_state('input_select.status', 'Weg') %}
+                            #ffc107 {% else%} #44739e {% endif %}
+                    - entity: input_select.status
+                      name: false
+                      icon: mdi:home-export-outline
+                      tap_action:
+                        action: call-service
+                        service: input_select.select_option
+                        service_data:
+                          option: Afwezig
+                          entity_id: input_select.status
+                      styles:
+                        button:
+                          color: >-
+                            {% if is_state('input_select.status', 'Afwezig') %}
+                            #ffc107 {% else%} #44739e {% endif %}
+                    - entity: input_select.status
+                      name: false
+                      icon: mdi:sleep
+                      tap_action:
+                        action: call-service
+                        service: input_select.select_option
+                        service_data:
+                          option: Slapen
+                          entity_id: input_select.status
+                      styles:
+                        button:
+                          color: >-
+                            {% if is_state('input_select.status', 'Slapen') %}
+                            #ffc107 {% else%} #44739e {% endif %}
+                    - entity: input_select.status
+                      name: false
+                      icon: mdi:home-account
+                      tap_action:
+                        action: call-service
+                        service: input_select.select_option
+                        service_data:
+                          option: Thuis
+                          entity_id: input_select.status
+                      styles:
+                        button:
+                          color: >-
+                            {% if is_state('input_select.status', 'Thuis') %}
+                            #ffc107 {% else%} #44739e {% endif %}
+                    - entity: input_select.status
+                      name: false
+                      icon: mdi:multimedia
+                      tap_action:
+                        action: call-service
+                        service: input_select.select_option
+                        service_data:
+                          option: Media
+                          entity_id: input_select.status
+                      styles:
+                        button:
+                          color: >-
+                            {% if is_state('input_select.status', 'Media') %}
+                            #ffc107 {% else%} #44739e {% endif %}
+                    - entity: input_select.status
+                      name: false
+                      icon: mdi:movie-open-play
+                      tap_action:
+                        action: call-service
+                        service: input_select.select_option
+                        service_data:
+                          option: Film
+                          entity_id: input_select.status
+                      styles:
+                        button:
+                          color: >-
+                            {% if is_state('input_select.status', 'Film') %}
+                            #ffc107 {% else%} #44739e {% endif %}
+              - type: custom:slider-entity-row
+                entity: input_number.master_verlichting
+                name: Master Verlichting
+                hide_state: true
+                secondary_info: >-
+                  [[ sensor.lichtsensor_kamer_illuminance_lux ]] lux | [[
+                  sensor.buienradar_irradiance ]]W/m²
+                state: ' '
+                tap_action:
+                  action: call-service
+                  service: input_number.set_value
+                  service_data:
+                    value: 230
+                    entity_id: input_number.master_verlichting
+              - type: divider
+              - entity: input_boolean.ventilator_auto
+                tap_action:
+                  action: toggle
+                name: Ventilator
+                secondary_info: >-
+                  {% if is_state('input_boolean.ventilator_auto', 'on') %} Auto
+                  {% else %} Manueel {% endif %}
+                extend_paper_buttons_row:
+                  hide_state: true
+                  position: right
+                  buttons:
+                    - entity: input_select.ventilatie
+                      name: false
+                      icon: mdi:fan-speed-1
+                      tap_action:
+                        action: call-service
+                        service: input_select.select_option
+                        service_data:
+                          option: Low
+                          entity_id: input_select.ventilatie
+                      styles:
+                        button:
+                          color: >-
+                            {% if is_state('input_select.ventilatie', 'Low') %}
+                            #ffc107 {% else%} #44739e {% endif %}
+                    - entity: input_select.ventilatie
+                      name: false
+                      icon: mdi:fan-speed-2
+                      tap_action:
+                        action: call-service
+                        service: input_select.select_option
+                        service_data:
+                          option: Medium
+                          entity_id: input_select.ventilatie
+                      styles:
+                        button:
+                          color: >-
+                            {% if is_state('input_select.ventilatie', 'Medium')
+                            %} #ffc107 {% else%} #44739e {% endif %}
+                    - entity: input_select.ventilatie
+                      name: false
+                      icon: mdi:fan-speed-3
+                      tap_action:
+                        action: call-service
+                        service: input_select.select_option
+                        service_data:
+                          option: High
+                          entity_id: input_select.ventilatie
+                      styles:
+                        button:
+                          color: >-
+                            {% if is_state('input_select.ventilatie', 'High') %}
+                            #ffc107 {% else%} #44739e {% endif %}
+              - entity: sensor.awair_score
+                name: Luchtkwaliteit
+                secondary_info: >-
+                  Vocht: {{"%d"|format(states('sensor.awair_humidity')|int)}}% |
+                  CO2:
+                  {{"%d"|format(states('sensor.awair_carbon_dioxide')|int)}}ppm
+              - type: divider
+              - type: custom:template-entity-row
+                entity: sensor.zonneplan_current_electricity_tariff
+                name: Elektriciteit
+                icon: mdi:transmission-tower
+                device_class: monetary
+                state: >-
+                  {{"%0.2f"|format(states('sensor.zonneplan_current_electricity_tariff')|float)}}
+                    €/kWh
+                secondary: >-
+                  ~ {{states('sensor.zonneplan_average_daily_price_str')}} €/kWh
+                  | Σ {{"%d"|format(states('sensor.electricity_year')|int) }}
+                  kWh
+              - entity: input_button.dummy
+                name: '  '
+                icon: mdi:trash-can
+                tap_action:
+                  action: toggle
+                extend_paper_buttons_row:
+                  hide_state: true
+                  position: right
+                  buttons:
+                    - entity: sensor.twentemilieu_organic_waste_pickup
+                      icon: mdi:food-apple
+                      layout: icon|state
+                      styles:
+                        button:
+                          color: green
+                    - entity: sensor.twentemilieu_paper_waste_pickup
+                      icon: mdi:newspaper-variant-multiple-outline
+                      layout: icon|state
+                      styles:
+                        button:
+                          color: blue
+                    - entity: sensor.twentemilieu_plastic_waste_pickup
+                      icon: mdi:recycle
+                      layout: icon|state
+                      styles:
+                        button:
+                          color: orange
+              - entity: input_button.dummy
+                icon: mdi:dots-horizontal
+                name: ' '
+                extend_paper_buttons_row:
+                  hide_state: true
+                  position: right
+                  buttons:
+                    - entity: input_boolean.deurbel
+                      name: Deurbel
+                      tap_action:
+                        action: toggle
+                    - entity: light.licht_buiten
+                      name: Buiten
+                      icon: mdi:string-lights
+                      tap_action:
+                        action: toggle
+      - type: custom:stack-in-card
+        cards:
+          - type: entities
+            title: Woonkamer
+            state_color: true
+            icon: mdi:sofa
+            show_header_toggle: false
+            entities:
+              - type: divider
+              - type: custom:template-entity-row
+                entity: sensor.temperatuur_kamer_temperature
+                name: Kamer
+                icon: mdi:sofa
+                state: ' '
+                secondary: >-
+                  {{"%.1f"|format(states('sensor.temperatuur_kamer_temperature')|float
+                  )}} °C | Vocht:
+                  {{"%d"|format(states('sensor.temperatuur_kamer_humidity')|int
+                  )}}% | VOC: {{"%d"|format(states('sensor.awair_voc')|int)}}
+                  ppm
+              - entity: sensor.awair_score
+                name: Luchtkwaliteit
+                secondary_info: >-
+                  CO2: {{"%d"|format(states('sensor.awair_carbon_dioxide')|int
+                  )}} ppm   | PM2.5:
+                  {{"%d"|format(states('sensor.awair_pm2_5')|int )}} µg/m³
+              - type: custom:fold-entity-row
+                head:
+                  type: custom:slider-entity-row
+                  entity: light.group_woonkamer
+                  hide_state: true
+                entities:
+                  - type: custom:slider-entity-row
+                    entity: light.group_staande_lamp
+                    hide_state: true
+                  - type: custom:slider-entity-row
+                    entity: light.ikea_woonkamer_lamp_rechts
+                    hide_state: true
+                  - type: custom:slider-entity-row
+                    entity: light.ikea_woonkamer_lamp_links
+                    hide_state: true
+                  - type: custom:slider-entity-row
+                    entity: light.tvledstrip
+                    hide_state: true
+                  - entity: light.leeslamp
+              - type: custom:fold-entity-row
+                head:
+                  type: custom:slider-entity-row
+                  entity: light.group_eettafellamp
+                  hide_state: true
+                entities:
+                  - type: custom:slider-entity-row
+                    entity: light.ikea_eetkamer_lamp1
+                    hide_state: true
+                  - type: custom:slider-entity-row
+                    entity: light.ikea_eetkamer_lamp2
+                    hide_state: true
+                  - type: custom:slider-entity-row
+                    entity: light.ikea_eetkamer_lamp3
+                    hide_state: true
+                  - type: custom:slider-entity-row
+                    entity: light.ikea_eetkamer_lamp4
+                    hide_state: true
+                  - type: custom:slider-entity-row
+                    entity: light.ikea_eetkamer_lamp5
+                    hide_state: true
+          - type: entities
+            entities:
+              - entity: sensor.temperatuur_keuken_temperature
+                name: Keuken
+                icon: mdi:food-fork-drink
+                state: ''
+                secondary_info: >-
+                  {{"%.1f"|format(states('sensor.temperatuur_keuken_temperature')|float
+                  )}} °C | Vocht:
+                  {{"%d"|format(states('sensor.temperatuur_keuken_humidity')|int
+                  )}}%
+                extend_paper_buttons_row:
+                  hide_state: true
+                  position: right
+                  buttons:
+                    - entity: light.lamp_aanrecht
+                      name: Aanrecht
+                      tap_action:
+                        action: toggle
+              - type: section
+              - entity: climate.nefit_nefit
+                name: Thermostaat
+                icon: mdi:thermostat
+                state: ''
+                extend_paper_buttons_row:
+                  hide_state: true
+                  position: right
+                  buttons:
+                    - entity: switch.nefit_preheating
+                      name: Preheat
+                      tap_action:
+                        action: toggle
+                    - entity: switch.nefit_hot_water
+                      name: Tapwater
+                      tap_action:
+                        action: toggle
+              - entity: climate.nefit_nefit
+                name: Als zondag
+                icon: mdi:calendar
+                state: ''
+                extend_paper_buttons_row:
+                  hide_state: true
+                  position: right
+                  buttons:
+                    - entity: switch.nefit_today_as_sunday
+                      name: Vandaag
+                      tap_action:
+                        action: toggle
+                    - entity: switch.nefit_tomorrow_as_sunday
+                      name: Morgen
+                      tap_action:
+                        action: toggle
+          - type: custom:simple-thermostat
+            entity: climate.nefit_nefit
+            layout:
+              step: row
+            sensors:
+              - entity: sensor.nefit_supply_temperature
+                name: Aanvoer
+              - entity: sensor.nefit_system_pressure
+                name: Druk
+            control:
+              - preset
+            hide:
+              state: true
+              temperature: true
+            header: false
+      - type: custom:stack-in-card
+        cards:
+          - type: entities
+            entities:
+              - type: divider
+              - type: custom:template-entity-row
+                entity: sensor.temperatuur_slaapkamer_temperature
+                name: Slaapkamer
+                icon: mdi:bed
+                state: ''
+                secondary: >-
+                  {{"%.1f"|format(states('sensor.temperatuur_slaapkamer_temperature')|float
+                  )}} °C | Vocht:
+                  {{"%d"|format(states('sensor.temperatuur_slaapkamer_humidity')|int
+                  )}}% | TVOC
+                  {{"%d"|format(states('sensor.aqara_tvoc_voc')|float )}} ppm
+              - type: custom:fold-entity-row
+                head:
+                  type: custom:slider-entity-row
+                  entity: light.group_slaapkamer
+                  hide_state: true
+                entities:
+                  - type: custom:slider-entity-row
+                    entity: light.slaapkamer
+                    hide_state: true
+                  - type: custom:slider-entity-row
+                    entity: light.bedlamp_rechts
+                    hide_state: true
+                  - type: custom:slider-entity-row
+                    entity: light.bedlamp_links
+                    hide_state: true
+              - entity: sensor.smartphone_next_alarm
+              - type: divider
+              - type: custom:template-entity-row
+                entity: sensor.temperatuur_kantoor_temperature
+                name: Kantoor
+                icon: mdi:desktop-tower-monitor
+                state: ''
+                secondary: >-
+                  {{"%.1f"|format(states('sensor.temperatuur_kantoor_temperature')|float
+                  )}} °C | Vocht:
+                  {{"%d"|format(states('sensor.temperatuur_kantoor_humidity')|int
+                  )}}% 
+              - type: custom:fold-entity-row
+                head:
+                  type: custom:slider-entity-row
+                  entity: light.group_studeerkamer
+                  hide_state: true
+                entities:
+                  - type: custom:slider-entity-row
+                    entity: light.studeerkamer
+                    hide_state: true
+                  - type: custom:slider-entity-row
+                    entity: light.computerlamp
+                    hide_state: true
+              - entity: binary_sensor.desktop
+                name: Computer
+                icon: mdi:desktop-tower-monitor
+                secondary_info: >-
+                  {{"%.1f"|format(states('sensor.stopcontact_computer_power')|float
+                  )}} W
+                extend_paper_buttons_row:
+                  hide_state: true
+                  position: right
+                  buttons:
+                    - entity: switch.computerspeakers
+                      name: Speakers
+                      tap_action:
+                        action: toggle
+                    - entity: climate.smart_infrared_panel_heater
+                      name: Heater
+                      tap_action:
+                        action: toggle
+            title: Ruimtes
+            icon: mdi:door
+            state_color: true
+          - type: custom:simple-thermostat
+            entity: climate.smart_infrared_panel_heater
+            layout:
+              step: row
+            header: false
+            control: false
+            hide:
+              state: true
+              temperature: true
+          - type: entities
+            entities:
+              - type: custom:template-entity-row
+                entity: sensor.temperatuur_badkamer_temperature
+                name: Badkamer
+                icon: mdi:shower
+                state: ''
+                secondary: >-
+                  {{"%.1f"|format(states('sensor.temperatuur_badkamer_temperature')|float
+                  )}} °C | Vocht:
+                  {{"%d"|format(states('sensor.temperatuur_badkamer_humidity')|int
+                  )}} % 
+              - type: divider
+              - type: custom:slider-entity-row
+                entity: light.group_hal
+                hide_state: true
+              - type: custom:slider-entity-row
+                entity: light.group_overloop
+                hide_state: true
+            state_color: true
+      - type: custom:stack-in-card
+        cards:
+          - show_name: false
+            show_icon: true
+            icon: mdi:multimedia
+            show_state: true
+            title: Multimedia
+            type: entities
+            entities:
+              - type: divider
+              - entity: input_button.dummy
+                name: Media
+                icon: mdi:multimedia
+                tap_action:
+                  action: toggle
+                secondary_info: >-
+                  {{"%.1f"|format(states('sensor.stopcontact_media_power')|float)
+                  }} W
+                extend_paper_buttons_row:
+                  hide_state: true
+                  position: right
+                  buttons:
+                    - entity: switch.subwoofer
+                      name: Subwoofer
+                      tap_action:
+                        action: toggle
+                    - entity: media_player.tv
+                      name: TV
+                      icon: mdi:television-classic
+                      tap_action:
+                        action: toggle
+          - type: custom:mini-media-player
+            entity: media_player.kodi_kamer
+            artwork: cover
+          - type: custom:mini-media-player
+            entity: media_player.avr_kamer
+            volume_stateless: false
+            hide:
+              controls: true
+            icon: mdi:audio-video
+            shortcuts:
+              buttons:
+                - icon: mdi:kodi
+                  id: Mediacenter
+                  type: source
+                - icon: mdi:spotify
+                  id: Spotify
+                  type: source
+                - icon: mdi:television
+                  id: KPN
+                  type: source
+                - icon: mdi:google-chrome
+                  id: HDMI 3
+                  type: source
+              columns: 4
+            group: false
+            artwork: cover
+            info: scroll
+          - type: custom:mini-media-player
+            entity: media_player.spotify_ghoogsteen
+            artwork: cover
+            sound_mode: icon
+            volume_stateless: false
+          - type: custom:mini-media-player
+            entity: media_player.chromecast_woonkamer
+            artwork: cover
+            sound_mode: icon
+            volume_stateless: false
+      - type: custom:stack-in-card
+        cards:
+          - type: entities
+            title: Witgoed
+            state_color: true
+            icon: mdi:washing-machine
+            entities:
+              - type: divider
+              - entity: sensor.stopcontact_wasmachine_power
+                name: Wasmachine activiteit
+                icon: mdi:washing-machine
+                type: custom:secondaryinfo-entity-row
+                secondary_info: '[[ sensor.wasmachine_plan_status ]]'
+              - entity: sensor.wasmachine_plan_price
+                name: Laagste kosten
+                icon: mdi:currency-eur
+                type: custom:secondaryinfo-entity-row
+                secondary_info: '[[ sensor.wasmachine_plan_price.attributes.info ]]'
+              - entity: sensor.wasmachine_plan_co2
+                name: Laagste uitstoot
+                icon: mdi:molecule-co2
+                type: custom:secondaryinfo-entity-row
+                secondary_info: '[[ sensor.wasmachine_plan_co2.attributes.info ]]'
+          - type: entities
+            state_color: true
+            entities:
+              - entity: sensor.stopcontact_droger_power
+                name: Droger activiteit
+                icon: mdi:tumble-dryer
+                type: custom:secondaryinfo-entity-row
+                secondary_info: '[[ sensor.droger_plan_status ]]'
+              - entity: sensor.droger_plan_price
+                name: Laagste kosten
+                icon: mdi:currency-eur
+                type: custom:secondaryinfo-entity-row
+                secondary_info: '[[ sensor.droger_plan_price.attributes.info ]]'
+              - entity: sensor.droger_plan_co2
+                name: Laagste uitstoot
+                icon: mdi:molecule-co2
+                type: custom:secondaryinfo-entity-row
+                secondary_info: '[[ sensor.droger_plan_co2.attributes.info ]]'
+          - type: entities
+            state_color: true
+            entities:
+              - entity: sensor.stopcontact_vaatwasser_power
+                name: Vaatwasser activiteit
+                type: custom:secondaryinfo-entity-row
+                secondary_info: '[[ sensor.vaatwasser_plan_status ]]'
+              - entity: sensor.vaatwasser_plan_price
+                name: Laagste kosten
+                icon: mdi:currency-eur
+                type: custom:secondaryinfo-entity-row
+                secondary_info: '[[ sensor.vaatwasser_plan_price.attributes.info ]]'
+              - entity: sensor.vaatwasser_plan_co2
+                name: Laagste uitstoot
+                icon: mdi:molecule-co2
+                type: custom:secondaryinfo-entity-row
+                secondary_info: '[[ sensor.vaatwasser_plan_co2.attributes.info ]]'
+              - type: section
+              - entity: input_boolean.vaatwasser_smartstart
+                name: Vaatwasser Smart Start
+                secondary_info: >-
+                  {% if is_state('input_boolean.vaatwasser_smartstart', 'on') %}
+                  Actief {% else %} Uit {% endif %}
+                tap_action:
+                  action: toggle
+                extend_paper_buttons_row:
+                  hide_state: true
+                  position: right
+                  buttons:
+                    - entity: input_button.vaatwasser_goedkoop
+                      name: false
+                      tap_action:
+                        action: call-service
+                        service: input_button.press
+                        service_data:
+                          entity_id: input_button.vaatwasser_goedkoop
+                    - entity: input_button.vaatwasser_co2
+                      name: false
+                      tap_action:
+                        action: call-service
+                        service: input_button.press
+                        service_data:
+                          entity_id: input_button.vaatwasser_co2
+                    - entity: input_button.vaatwasser_clever
+                      name: false
+                      tap_action:
+                        action: call-service
+                        service: input_button.press
+                        service_data:
+                          entity_id: input_button.vaatwasser_clever
+                    - entity: switch.stopcontact_vaatwasser
+                      name: false
+                      icon: mdi:power
+                      tap_action:
+                        action: toggle
+              - entity: input_datetime.vaatwasser_starttijd
+      - type: custom:stack-in-card
+        cards:
+          - type: custom:simple-weather-card
+            entity: weather.buienradar
+            name: in Hengelo
+          - type: custom:neerslag-card
+            entity: sensor.neerslag_buienalarm_regen_data
+            title: Neerslag
+      - type: custom:stack-in-card
+        cards:
+          - type: entities
+            state_color: true
+            title: Energie
+            icon: mdi:transmission-tower
+            show_header_toggle: false
+            entities:
+              - type: divider
+              - type: custom:template-entity-row
+                entity: sensor.zonneplan_current_electricity_tariff
+                name: Elektriciteit
+                icon: mdi:transmission-tower
+                state: >-
+                  {{"%0.2f"|format(states('sensor.zonneplan_current_electricity_tariff')|float)}}
+                    €/kWh
+                secondary: >-
+                  ~ {{states('sensor.zonneplan_average_daily_price_str')}} €/kWh
+                  | Σ {{"%d"|format(states('sensor.electricity_year')|int) }}
+                  kWh
+              - type: custom:template-entity-row
+                entity: sensor.zonneplan_current_co2
+                name: CO2 Emissie
+                icon: mdi:molecule-co2
+                state: |-
+                  {{"%d"|format(states('sensor.zonneplan_current_co2')|int)}}
+                    gCO2/kWh
+                secondary: >-
+                  ~ {{"%d"|format(states('sensor.electricity_avg_co2')|int
+                  )}}/kWh | Σ
+                  {{"%d"|format(states('sensor.co2_total_emissions')|int/1000)}}
+                  kg
+              - type: custom:template-entity-row
+                entity: sensor.meter_power_consumption
+                name: Vermogen
+                icon: mdi:home-lightning-bolt
+                state: >-
+                  {{"%d"|format(states('sensor.meter_power_consumption')|float*1000)}}
+                    W
+                secondary: >-
+                  {{"%d"|format(states('sensor.co2_current_emissions')|int) }}
+                  gCO2/h
+              - type: custom:template-entity-row
+                entity: sensor.current_hourly_gas_price_zonneplan
+                name: Gas
+                icon: mdi:gas-cylinder
+                state: >-
+                  {{"%0.2f"|format(states('sensor.current_hourly_gas_price_zonneplan')|float)}}
+                    €/m³
+                secondary: >-
+                  ~
+                  {{"%0.2f"|format(states('sensor.gas_consumption_per_weighted_degree_day')|float)
+                  }} m³/graaddag  | Σ
+                  {{"%d"|format(states('sensor.gas_year')|float) }} m³
+              - type: custom:template-entity-row
+                entity: sensor.electricity_avg_cost
+                name: Elektriciteit
+                icon: mdi:currency-eur
+                state: >-
+                  {{"%0.2f"|format(states('sensor.electricity_avg_cost')|float)}}
+                    €/kWh
+                secondary: >-
+                  Σ
+                  €{{"%0.2f"|format(states('sensor.elektriciteitskosten')|float)
+                  }} | Budget:
+                  {{"%d"|format(states('sensor.electricity_ceiling')|float) }}
+                  kWh
+              - type: custom:template-entity-row
+                entity: sensor.gas_avg_cost
+                name: Gas
+                icon: mdi:currency-eur
+                state: |-
+                  {{"%0.2f"|format(states('sensor.gas_avg_cost')|float)}}
+                    €/m³
+                secondary: >-
+                  Σ €{{"%0.2f"|format(states('sensor.gaskosten')|float) }} |
+                  Budget: {{"%d"|format(states('sensor.gas_ceiling')|float) }}
+                  m³
+          - type: custom:apexcharts-card
+            apex_config:
+              chart:
+                height: 200px
+            experimental:
+              color_threshold: true
+            graph_span: 26h
+            span:
+              start: hour
+              offset: '-2h'
+            update_interval: +1h
+            header:
+              title: Energieprijzen
+              show: true
+            now:
+              show: true
+              label: NU
+            series:
+              - entity: sensor.zonneplan_current_electricity_tariff
+                color_threshold:
+                  - value: 0
+                    color: '#04822e'
+                  - value: 0.15
+                    color: '#12A141'
+                  - value: 0.2
+                    color: '#79B92C'
+                  - value: 0.25
+                    color: '#C4D81D'
+                  - value: 0.3
+                    color: '#F3DC0C'
+                  - value: 0.35
+                    color: '#EFA51E'
+                  - value: 0.4
+                    color: '#E76821'
+                  - value: 0.45
+                    color: '#DC182F'
+                type: column
+                float_precision: 2
+                data_generator: |
+                  return entity.attributes.forcast.map((entry) => {
+                     return [new Date(entry.datetime), entry.electricity_price / 10000000];
+                   });
+            yaxis:
+              - id: '1'
+                decimals: 2
+                min: 0
+                max: 0.5
+          - type: custom:apexcharts-card
+            apex_config:
+              chart:
+                height: 200px
+            experimental:
+              color_threshold: true
+            graph_span: 26h
+            span:
+              start: hour
+              offset: '-2h'
+            update_interval: +1h
+            header:
+              title: CO2 intensiteit
+              show: true
+            now:
+              show: true
+              label: NU
+            series:
+              - entity: sensor.zonneplan_current_electricity_tariff
+                unit: gCO2/kWh
+                color_threshold:
+                  - value: 0
+                    color: '#04822e'
+                  - value: 50
+                    color: '#12A141'
+                  - value: 100
+                    color: '#79B92C'
+                  - value: 150
+                    color: '#C4D81D'
+                  - value: 200
+                    color: '#F3DC0C'
+                  - value: 250
+                    color: '#EFA51E'
+                  - value: 300
+                    color: '#E76821'
+                  - value: 350
+                    color: '#DC182F'
+                type: column
+                float_precision: 2
+                data_generator: |
+                  return entity.attributes.forcast.map((entry) => {
+                     return [new Date(entry.datetime), entry.carbon_footprint_in_grams/10];
+                   });
+            yaxis:
+              - id: '1'
+                decimals: 0
+                min: 0
+                max: 500
+      - type: energy-distribution
+        link_dashboard: true
+  - theme: Backend-selected
+    title: Energie
+    path: energie
+    icon: mdi:washing-machine
+    badges: []
+    cards:
+      - type: custom:stack-in-card
+        cards:
+          - type: entities
+            entities:
+              - entity: sensor.stopcontact_wasmachine_power
+                name: Wasmachine activiteit
+                type: custom:secondaryinfo-entity-row
+                secondary_info: '[[ sensor.wasmachine_plan_status ]]'
+              - entity: sensor.wasmachine_plan_price
+                name: Laagste kosten
+                icon: mdi:currency-eur
+                type: custom:secondaryinfo-entity-row
+                secondary_info: '[[ sensor.wasmachine_plan_price.attributes.info ]]'
+              - entity: sensor.wasmachine_plan_co2
+                name: Laagste uitstoot
+                icon: mdi:molecule-co2
+                type: custom:secondaryinfo-entity-row
+                secondary_info: '[[ sensor.wasmachine_plan_co2.attributes.info ]]'
+              - entity: sensor.wasmachine_plan_clever
+                name: Slimste keuze
+                icon: mdi:leaf
+                type: custom:secondaryinfo-entity-row
+                secondary_info: '[[ sensor.wasmachine_plan_clever.attributes.info ]]'
+              - entity: sensor.laatste_was
+                name: Laatste was
+                icon: mdi:history
+                type: custom:secondaryinfo-entity-row
+                secondary_info: '[[ sensor.laatste_was_info ]]'
+            title: Wasmachine
+            icon: mdi:washing-machine
+            footer:
+              type: graph
+              entity: sensor.stopcontact_wasmachine_power
+              detail: 2
+          - type: custom:apexcharts-card
+            apex_config:
+              chart:
+                height: 200px
+            experimental:
+              color_threshold: true
+            graph_span: 24h
+            span:
+              start: hour
+              offset: +1h
+            update_interval: +15m
+            header:
+              title: Kosten per was [€]
+              show: true
+            series:
+              - entity: sensor.wasmachine_plan
+                name: Kosten
+                unit: €
+                color_threshold:
+                  - value: 0
+                    color: '#04822e'
+                  - value: 0.12
+                    color: '#12A141'
+                  - value: 0.16
+                    color: '#79B92C'
+                  - value: 0.2
+                    color: '#C4D81D'
+                  - value: 0.24
+                    color: '#F3DC0C'
+                  - value: 0.28
+                    color: '#EFA51E'
+                  - value: 0.32
+                    color: '#E76821'
+                  - value: 0.36
+                    color: '#DC182F'
+                type: column
+                float_precision: 2
+                data_generator: |
+                  return entity.attributes.forecast.map((entry) => {
+                     return [new Date(entry.datetime), entry.costs];
+                   });
+            yaxis:
+              - id: '1'
+                decimals: 2
+                min: 0
+                max: 0.4
+          - type: custom:apexcharts-card
+            apex_config:
+              chart:
+                height: 200px
+            experimental:
+              color_threshold: true
+            graph_span: 24h
+            span:
+              start: hour
+              offset: +1h
+            update_interval: +15m
+            header:
+              title: Uitstoot per was [gCO2]
+              show: true
+            series:
+              - entity: sensor.wasmachine_plan
+                name: Uitstoot
+                unit: gCO2
+                color_threshold:
+                  - value: 0
+                    color: '#04822e'
+                  - value: 40
+                    color: '#12A141'
+                  - value: 80
+                    color: '#79B92C'
+                  - value: 120
+                    color: '#C4D81D'
+                  - value: 160
+                    color: '#F3DC0C'
+                  - value: 200
+                    color: '#EFA51E'
+                  - value: 340
+                    color: '#E76821'
+                  - value: 280
+                    color: '#DC182F'
+                type: column
+                float_precision: 2
+                data_generator: |
+                  return entity.attributes.forecast.map((entry) => {
+                     return [new Date(entry.datetime), entry.co2];
+                   });
+            yaxis:
+              - id: '1'
+                decimals: 0
+                min: 0
+                max: 400
+      - type: custom:stack-in-card
+        cards:
+          - type: entities
+            entities:
+              - entity: sensor.stopcontact_droger_power
+                name: Droger activiteit
+                icon: mdi:tumble-dryer
+                type: custom:secondaryinfo-entity-row
+                secondary_info: '[[ sensor.droger_plan_status ]]'
+              - entity: sensor.droger_plan_price
+                name: Laagste kosten
+                icon: mdi:currency-eur
+                type: custom:secondaryinfo-entity-row
+                secondary_info: '[[ sensor.droger_plan_price.attributes.info ]]'
+              - entity: sensor.droger_plan_co2
+                name: Laagste uitstoot
+                icon: mdi:molecule-co2
+                type: custom:secondaryinfo-entity-row
+                secondary_info: '[[ sensor.droger_plan_co2.attributes.info ]]'
+              - entity: sensor.droger_plan_clever
+                name: Slimste keuze
+                icon: mdi:leaf
+                type: custom:secondaryinfo-entity-row
+                secondary_info: '[[ sensor.droger_plan_clever.attributes.info ]]'
+              - entity: sensor.laatste_droging
+                name: Laatste droging
+                icon: mdi:history
+                type: custom:secondaryinfo-entity-row
+                secondary_info: '[[ sensor.laatste_droging_info ]]'
+            title: Droger
+            icon: mdi:tumble-dryer
+            footer:
+              type: graph
+              entity: sensor.stopcontact_droger_power
+              detail: 2
+          - type: custom:apexcharts-card
+            apex_config:
+              chart:
+                height: 200px
+            experimental:
+              color_threshold: true
+            graph_span: 24h
+            span:
+              start: hour
+              offset: +1h
+            update_interval: +15m
+            header:
+              title: Kosten per droging [€]
+              show: true
+            series:
+              - entity: sensor.droger_plan
+                name: Kosten
+                unit: €
+                color_threshold:
+                  - value: 0
+                    color: '#04822e'
+                  - value: 0.1
+                    color: '#12A141'
+                  - value: 0.133
+                    color: '#79B92C'
+                  - value: 0.166
+                    color: '#C4D81D'
+                  - value: 0.2
+                    color: '#F3DC0C'
+                  - value: 0.233
+                    color: '#EFA51E'
+                  - value: 0.266
+                    color: '#E76821'
+                  - value: 0.3
+                    color: '#DC182F'
+                type: column
+                float_precision: 2
+                data_generator: |
+                  return entity.attributes.forecast.map((entry) => {
+                     return [new Date(entry.datetime), entry.costs];
+                   });
+            yaxis:
+              - id: '1'
+                decimals: 2
+                min: 0
+                max: 0.33
+          - type: custom:apexcharts-card
+            apex_config:
+              chart:
+                height: 200px
+            experimental:
+              color_threshold: true
+            graph_span: 24h
+            span:
+              start: hour
+              offset: +1h
+            update_interval: +15m
+            header:
+              title: Uitstoot per droging [gCO2]
+              show: true
+            series:
+              - entity: sensor.droger_plan
+                name: Uitstoot
+                unit: gCO2
+                color_threshold:
+                  - value: 0
+                    color: '#04822e'
+                  - value: 33
+                    color: '#12A141'
+                  - value: 66
+                    color: '#79B92C'
+                  - value: 100
+                    color: '#C4D81D'
+                  - value: 133
+                    color: '#F3DC0C'
+                  - value: 166
+                    color: '#EFA51E'
+                  - value: 200
+                    color: '#E76821'
+                  - value: 233
+                    color: '#DC182F'
+                type: column
+                float_precision: 2
+                data_generator: |
+                  return entity.attributes.forecast.map((entry) => {
+                     return [new Date(entry.datetime), entry.co2];
+                   });
+            yaxis:
+              - id: '1'
+                decimals: 0
+                min: 0
+                max: 333
+      - type: custom:stack-in-card
+        cards:
+          - type: entities
+            entities:
+              - entity: sensor.stopcontact_vaatwasser_power
+                name: Vaatwasser activiteit
+                type: custom:secondaryinfo-entity-row
+                secondary_info: '[[ sensor.vaatwasser_plan_status ]]'
+              - entity: sensor.vaatwasser_plan_price
+                name: Laagste kosten
+                icon: mdi:currency-eur
+                type: custom:secondaryinfo-entity-row
+                secondary_info: '[[ sensor.vaatwasser_plan_price.attributes.info ]]'
+              - entity: sensor.vaatwasser_plan_co2
+                name: Laagste uitstoot
+                icon: mdi:molecule-co2
+                type: custom:secondaryinfo-entity-row
+                secondary_info: '[[ sensor.vaatwasser_plan_co2.attributes.info ]]'
+              - entity: sensor.vaatwasser_plan_clever
+                name: Slimste keuze
+                icon: mdi:leaf
+                type: custom:secondaryinfo-entity-row
+                secondary_info: '[[ sensor.vaatwasser_plan_clever.attributes.info ]]'
+              - entity: sensor.laatste_vaatwas
+                name: Laatste vaatwas
+                icon: mdi:history
+                type: custom:secondaryinfo-entity-row
+                secondary_info: '[[ sensor.laatste_vaatwas_info ]]'
+            title: Vaatwasser
+            footer:
+              type: graph
+              entity: sensor.stopcontact_vaatwasser_power
+              detail: 2
+            show_header_toggle: false
+            state_color: true
+            icon: mdi:dishwasher
+          - type: entities
+            entities:
+              - entity: input_boolean.vaatwasser_smartstart
+                name: Smart Start
+                secondary_info: >-
+                  {% if is_state('input_boolean.vaatwasser_smartstart', 'on') %}
+                  Actief {% else %} Uit {% endif %}
+                tap_action:
+                  action: toggle
+                extend_paper_buttons_row:
+                  hide_state: true
+                  position: right
+                  buttons:
+                    - entity: input_button.vaatwasser_goedkoop
+                      name: false
+                      tap_action:
+                        action: call-service
+                        service: input_button.press
+                        service_data:
+                          entity_id: input_button.vaatwasser_goedkoop
+                    - entity: input_button.vaatwasser_co2
+                      name: false
+                      tap_action:
+                        action: call-service
+                        service: input_button.press
+                        service_data:
+                          entity_id: input_button.vaatwasser_co2
+                    - entity: input_button.vaatwasser_clever
+                      name: false
+                      tap_action:
+                        action: call-service
+                        service: input_button.press
+                        service_data:
+                          entity_id: input_button.vaatwasser_clever
+                    - entity: switch.stopcontact_vaatwasser
+                      name: false
+                      icon: mdi:power
+                      tap_action:
+                        action: toggle
+              - entity: input_datetime.vaatwasser_starttijd
+            title: Vaatwasser Smart Start
+            show_header_toggle: false
+            state_color: true
+            icon: mdi:clock-start
+          - type: custom:apexcharts-card
+            apex_config:
+              chart:
+                height: 200px
+            experimental:
+              color_threshold: true
+            graph_span: 24h
+            span:
+              start: hour
+              offset: +1h
+            update_interval: +15m
+            header:
+              title: Kosten per vaatwas [€]
+              show: true
+            series:
+              - entity: sensor.vaatwasser_plan
+                name: Kosten
+                unit: €
+                color_threshold:
+                  - value: 0
+                    color: '#04822e'
+                  - value: 0.2
+                    color: '#12A141'
+                  - value: 0.266
+                    color: '#79B92C'
+                  - value: 0.333
+                    color: '#C4D81D'
+                  - value: 0.4
+                    color: '#F3DC0C'
+                  - value: 0.466
+                    color: '#EFA51E'
+                  - value: 0.533
+                    color: '#E76821'
+                  - value: 0.6
+                    color: '#DC182F'
+                type: column
+                float_precision: 2
+                data_generator: |
+                  return entity.attributes.forecast.map((entry) => {
+                     return [new Date(entry.datetime), entry.costs];
+                   });
+            yaxis:
+              - id: '1'
+                decimals: 2
+                min: 0
+                max: 0.667
+          - type: custom:apexcharts-card
+            apex_config:
+              chart:
+                height: 200px
+            experimental:
+              color_threshold: true
+            graph_span: 24h
+            span:
+              start: hour
+              offset: +1h
+            update_interval: +15m
+            header:
+              title: Uitstoot per vaatwas [gCO2]
+              show: true
+            series:
+              - entity: sensor.vaatwasser_plan
+                name: Uitstoot
+                unit: gCO2
+                color_threshold:
+                  - value: 0
+                    color: '#04822e'
+                  - value: 67
+                    color: '#12A141'
+                  - value: 133
+                    color: '#79B92C'
+                  - value: 200
+                    color: '#C4D81D'
+                  - value: 266
+                    color: '#F3DC0C'
+                  - value: 333
+                    color: '#EFA51E'
+                  - value: 400
+                    color: '#E76821'
+                  - value: 466
+                    color: '#DC182F'
+                type: column
+                float_precision: 2
+                data_generator: |
+                  return entity.attributes.forecast.map((entry) => {
+                     return [new Date(entry.datetime), entry.co2];
+                   });
+            yaxis:
+              - id: '1'
+                decimals: 0
+                min: 0
+                max: 667
+      - type: vertical-stack
+        cards:
+          - type: entities
+            entities:
+              - entity: sensor.wasmachine_droger_plan_price
+                name: Laagste kosten
+                icon: mdi:currency-eur
+                type: custom:secondaryinfo-entity-row
+                secondary_info: '[[ sensor.wasmachine_droger_plan_price.attributes.info ]]'
+              - entity: sensor.wasmachine_droger_plan_co2
+                name: Laagste uitstoot
+                icon: mdi:molecule-co2
+                type: custom:secondaryinfo-entity-row
+                secondary_info: '[[ sensor.wasmachine_droger_plan_co2.attributes.info ]]'
+              - entity: sensor.wasmachine_droger_plan_clever
+                name: Slimste keuze
+                icon: mdi:leaf
+                type: custom:secondaryinfo-entity-row
+                secondary_info: '[[ sensor.wasmachine_droger_plan_clever.attributes.info ]]'
+            title: Wasmachine en Droger
+  - theme: Backend-selected
+    title: Witgoed
+    path: witgoed
+    icon: mdi:transmission-tower
+    badges: []
+    cards:
+      - type: custom:stack-in-card
+        cards:
+          - type: entities
+            state_color: true
+            title: Energie
+            icon: mdi:transmission-tower
+            show_header_toggle: false
+            entities:
+              - type: divider
+              - type: custom:template-entity-row
+                entity: sensor.zonneplan_current_electricity_tariff
+                name: Elektriciteit
+                icon: mdi:transmission-tower
+                state: >-
+                  {{"%0.2f"|format(states('sensor.zonneplan_current_electricity_tariff')|float)}}
+                    €/kWh
+                secondary: >-
+                  ~ {{states('sensor.zonneplan_average_daily_price_str')}} €/kWh
+                  | Σ {{"%d"|format(states('sensor.electricity_year')|int) }}
+                  kWh
+              - type: custom:template-entity-row
+                entity: sensor.zonneplan_current_co2
+                name: CO2 Emissie
+                icon: mdi:molecule-co2
+                state: |-
+                  {{"%d"|format(states('sensor.zonneplan_current_co2')|int)}}
+                    gCO2/kWh
+                secondary: >-
+                  ~ {{"%d"|format(states('sensor.electricity_avg_co2')|int
+                  )}}/kWh | Σ
+                  {{"%d"|format(states('sensor.co2_total_emissions')|int/1000)}}
+                  kg
+              - type: custom:template-entity-row
+                entity: sensor.meter_power_consumption
+                name: Vermogen
+                icon: mdi:home-lightning-bolt
+                state: >-
+                  {{"%d"|format(states('sensor.meter_power_consumption')|float*1000)}}
+                    W
+                secondary: >-
+                  {{"%d"|format(states('sensor.co2_current_emissions')|int) }}
+                  gCO2/h
+              - type: custom:template-entity-row
+                entity: sensor.current_hourly_gas_price_zonneplan
+                name: Gas
+                icon: mdi:gas-cylinder
+                state: >-
+                  {{"%0.2f"|format(states('sensor.current_hourly_gas_price_zonneplan')|float)}}
+                    €/m³
+                secondary: >-
+                  ~
+                  {{"%0.2f"|format(states('sensor.gas_consumption_per_weighted_degree_day')|float)
+                  }} m³/graaddag  | Σ
+                  {{"%d"|format(states('sensor.gas_year')|float) }} m³
+              - type: custom:template-entity-row
+                entity: sensor.electricity_avg_cost
+                name: Elektriciteit
+                icon: mdi:currency-eur
+                state: >-
+                  {{"%0.2f"|format(states('sensor.electricity_avg_cost')|float)}}
+                    €/kWh
+                secondary: >-
+                  Σ
+                  €{{"%0.2f"|format(states('sensor.elektriciteitskosten')|float)
+                  }} | Budget:
+                  {{"%d"|format(states('sensor.electricity_ceiling')|float) }}
+                  kWh
+              - type: custom:template-entity-row
+                entity: sensor.gas_avg_cost
+                name: Gas
+                icon: mdi:currency-eur
+                state: |-
+                  {{"%0.2f"|format(states('sensor.gas_avg_cost')|float)}}
+                    €/m³
+                secondary: >-
+                  Σ €{{"%0.2f"|format(states('sensor.gaskosten')|float) }} |
+                  Budget: {{"%d"|format(states('sensor.gas_ceiling')|float) }}
+                  m³
+          - type: custom:apexcharts-card
+            apex_config:
+              chart:
+                height: 200px
+            experimental:
+              color_threshold: true
+            graph_span: 26h
+            span:
+              start: hour
+              offset: '-2h'
+            update_interval: +1h
+            header:
+              title: Energieprijzen
+              show: true
+            now:
+              show: true
+              label: NU
+            series:
+              - entity: sensor.zonneplan_current_electricity_tariff
+                color_threshold:
+                  - value: 0
+                    color: '#04822e'
+                  - value: 0.15
+                    color: '#12A141'
+                  - value: 0.2
+                    color: '#79B92C'
+                  - value: 0.25
+                    color: '#C4D81D'
+                  - value: 0.3
+                    color: '#F3DC0C'
+                  - value: 0.35
+                    color: '#EFA51E'
+                  - value: 0.4
+                    color: '#E76821'
+                  - value: 0.45
+                    color: '#DC182F'
+                type: column
+                float_precision: 2
+                data_generator: |
+                  return entity.attributes.forcast.map((entry) => {
+                     return [new Date(entry.datetime), entry.electricity_price / 10000000];
+                   });
+            yaxis:
+              - id: '1'
+                decimals: 2
+                min: 0
+                max: 0.5
+          - type: custom:apexcharts-card
+            apex_config:
+              chart:
+                height: 200px
+            experimental:
+              color_threshold: true
+            graph_span: 26h
+            span:
+              start: hour
+              offset: '-2h'
+            update_interval: +1h
+            header:
+              title: CO2 intensiteit
+              show: true
+            now:
+              show: true
+              label: NU
+            series:
+              - entity: sensor.zonneplan_current_electricity_tariff
+                unit: gCO2/kWh
+                color_threshold:
+                  - value: 0
+                    color: '#04822e'
+                  - value: 50
+                    color: '#12A141'
+                  - value: 100
+                    color: '#79B92C'
+                  - value: 150
+                    color: '#C4D81D'
+                  - value: 200
+                    color: '#F3DC0C'
+                  - value: 250
+                    color: '#EFA51E'
+                  - value: 300
+                    color: '#E76821'
+                  - value: 350
+                    color: '#DC182F'
+                type: column
+                float_precision: 2
+                data_generator: |
+                  return entity.attributes.forcast.map((entry) => {
+                     return [new Date(entry.datetime), entry.carbon_footprint_in_grams/10];
+                   });
+            yaxis:
+              - id: '1'
+                decimals: 0
+                min: 0
+                max: 500
+      - type: custom:stack-in-card
+        cards:
+          - type: energy-distribution
+            link_dashboard: true
+      - type: custom:stack-in-card
+        cards:
+          - type: energy-usage-graph
+          - type: energy-gas-graph
+          - type: energy-water-graph
+          - type: energy-devices-graph
+      - type: energy-sources-table
+      - type: custom:stack-in-card
+        cards:
+          - type: gauge
+            entity: sensor.zonneplan_sustainability_score
+            needle: true
+            severity:
+              green: 75
+              yellow: 50
+              red: 0
+            name: Duurzaamheidsscore
+          - type: gauge
+            entity: sensor.co2_grid_fossil_fuel_percentage
+            severity:
+              green: 0
+              yellow: 30
+              red: 60
+            needle: true
+            name: Energiemix Fossiele Brandstoffen
+          - type: gauge
+            entity: sensor.zonneplan_current_co2
+            needle: true
+            severity:
+              green: 0
+              yellow: 150
+              red: 300
+            max: 500
+            min: 0
+            name: Energiemix CO2 intensiteit (gCO2/kWh)
+            unit: ' '
+      - type: custom:stack-in-card
+        cards:
+          - type: gauge
+            entity: sensor.electricity_ceiling
+            needle: false
+            severity:
+              green: 250
+              yellow: 0
+              red: -1500
+            name: Budget Elektriciteitsplafond
+            min: -1500
+            max: 1500
+          - type: gauge
+            entity: sensor.gas_ceiling
+            needle: false
+            severity:
+              green: 125
+              yellow: 0
+              red: -1500
+            name: Budget Gasplafond
+            min: -800
+            max: 800
+            unit: m³
+          - type: gauge
+            entity: sensor.elektriciteitskosten_plafondvoordeel
+            max: 500
+            min: -500
+            needle: false
+            severity:
+              green: 0.1
+              yellow: 0
+              red: 0
+            unit: €
+          - type: gauge
+            entity: sensor.gaskosten_plafondvoordeel
+            severity:
+              green: 0.1
+              yellow: 0
+              red: -400
+            min: -400
+            max: 400
+            unit: €
+  - theme: Backend-selected
+    icon: mdi:dots-horizontal
+    title: Overige
+    path: overige
+    badges: []
+    cards:
+      - type: custom:stack-in-card
+        cards:
+          - show_current: true
+            show_forecast: true
+            type: weather-forecast
+            entity: weather.buienradar
+            secondary_info_attribute: humidity
+          - show_name: false
+            show_icon: true
+            show_state: true
+            type: glance
+            entities:
+              - entity: sensor.lichtsensor_kamer_illuminance_lux
+              - entity: sensor.buienradar_irradiance
+              - entity: sensor.buienradar_wind_force
+              - entity: sensor.buienradar_wind_direction
+              - entity: sensor.buienradar_barometer
+          - type: custom:neerslag-card
+            entity: sensor.neerslag_buienalarm_regen_data
+            title: Neerslag
+          - show_name: false
+            show_icon: true
+            show_state: true
+            type: glance
+            entities:
+              - entity: sensor.waqi_air_quality_index
+              - entity: sensor.waqi_nitrogen_dioxide_no2
+              - entity: sensor.waqi_ozone_o3
+              - entity: sensor.waqi_particulate_matter_pm10
+              - entity: sensor.waqi_particulate_matter_pm25
+      - type: custom:stack-in-card
+        cards:
+          - type: entities
+            state_color: true
+            title: Overige
+            icon: mdi:hexagon-multiple-outline
+            show_header_toggle: false
+            entities:
+              - entity: input_button.dummy
+                name: ' '
+                icon: mdi:trash-can
+                tap_action:
+                  action: toggle
+                extend_paper_buttons_row:
+                  hide_state: true
+                  position: right
+                  buttons:
+                    - entity: sensor.twentemilieu_organic_waste_pickup
+                      icon: mdi:food-apple
+                      layout: icon|state
+                      styles:
+                        button:
+                          color: green
+                    - entity: sensor.twentemilieu_paper_waste_pickup
+                      icon: mdi:newspaper-variant-multiple-outline
+                      layout: icon|state
+                      styles:
+                        button:
+                          color: blue
+                    - entity: sensor.twentemilieu_plastic_waste_pickup
+                      icon: mdi:recycle
+                      layout: icon|state
+                      styles:
+                        button:
+                          color: orange
+              - entity: input_button.dummy
+                icon: mdi:dots-horizontal
+                name: ' '
+                extend_paper_buttons_row:
+                  hide_state: true
+                  position: right
+                  buttons:
+                    - entity: input_boolean.buitenkraan
+                      icon: mdi:watering-can
+                      name: Kraan
+                      tap_action:
+                        action: toggle
+                    - entity: input_boolean.alarm
+                      name: Alarm
+                      tap_action:
+                        action: toggle
+      - initial_view: listWeek
+        type: calendar
+        entities:
+          - calendar.twentemilieu
+          - calendar.ghoogsteen_gmail_com
+          - calendar.thermostaat
+      - type: custom:stack-in-card
+        cards:
+          - type: entities
+            entities:
+              - entity: sensor.stopcontact_server_power
+              - entity: sensor.docker_1cpu
+                name: CPU Gebruik
+                icon: mdi:cpu-64-bit
+              - entity: sensor.docker_memory
+                name: Geheugengebruik
+              - entity: sensor.radarr_disk_space_movies
+            title: Server
+            footer:
+              type: graph
+              entity: sensor.stopcontact_server_power
+              detail: 2
+            show_header_toggle: false
+            state_color: true
+            icon: mdi:server
+          - type: glance
+            title: Docker
+            entities:
+              - entity: switch.docker_appdaemon
+                name: AppDaemon
+                icon: mdi:home-assistant
+                tap_action:
+                  action: toggle
+              - entity: switch.docker_mqtt
+                name: MQTT
+                icon: mdi:home-automation
+                tap_action:
+                  action: toggle
+              - entity: switch.docker_zigbee2mqtt
+                name: Z2M
+                icon: mdi:zigbee
+                tap_action:
+                  action: toggle
+              - entity: switch.docker_watchtower
+                name: Watchtower
+                icon: mdi:lighthouse
+                tap_action:
+                  action: toggle
+              - entity: sensor.docker_containers_running
+                name: Containers
+                icon: mdi:docker
+          - type: glance
+            title: Operations
+            entities:
+              - entity: switch.adguard_home_filtering
+                name: Filter
+                tap_action:
+                  action: toggle
+              - entity: switch.adguard_home_protection
+                name: Protection
+                tap_action:
+                  action: toggle
+              - entity: switch.nzbget_download
+                name: NZBGET
+                icon: mdi:download
+                tap_action:
+                  action: toggle
+              - entity: sensor.sonarr_wanted
+                name: Wanted
+                icon: mdi:download-outline
+              - entity: sensor.sonarr_upcoming
+                name: Upcoming
+                icon: mdi:download-outline
+          - type: glance
+            entities:
+              - entity: sensor.asuswrt_download_speed
+                name: Download
+              - entity: sensor.asuswrt_upload_speed
+                name: Upload
+              - entity: sensor.asuswrt_load_avg_15m
+                name: Load
+              - entity: sensor.asuswrt_devices_connected
+                name: Apparaten
+          - type: glance
+            title: Downloads
+            entities:
+              - entity: sensor.nzbget_speed
+                name: NZB Speed
+              - entity: sensor.nzbget_queue_size
+                name: NZB Queue
+              - entity: sensor.nzbget_article_cache
+                name: NZB Cache
+              - entity: sensor.nzbget_post_processing_jobs
+                name: Processing
+          - type: glance
+            entities:
+              - entity: sensor.transmission_active_torrents
+                name: Torrents
+              - entity: sensor.transmission_completed_torrents
+                name: Voltooid
+              - entity: sensor.transmission_down_speed
+                name: Download
+              - entity: sensor.transmission_up_speed
+                name: Upload
+      - type: custom:stack-in-card
+        cards:
+          - type: glance
+            entities:
+              - entity: switch.nefit_today_as_sunday
+                name: Vandaag Zon.
+                tap_action:
+                  action: toggle
+              - entity: switch.nefit_tomorrow_as_sunday
+                name: Morgen Zon.
+                tap_action:
+                  action: toggle
+              - entity: switch.nefit_hot_water
+                tap_action:
+                  action: toggle
+              - entity: switch.nefit_preheating
+                tap_action:
+                  action: toggle
+                name: Preheat
+            show_state: true
+          - type: glance
+            entities:
+              - entity: sensor.nefit_outdoor_temperature
+              - entity: sensor.nefit_supply_temperature
+              - entity: sensor.nefit_system_pressure
+              - entity: sensor.nefit_gas_year_total

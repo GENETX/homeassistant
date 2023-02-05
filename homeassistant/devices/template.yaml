@@ -1,0 +1,51 @@
+- sensor: 
+  - name: electricity_ceiling
+    unit_of_measurement: 'kWh'
+    state: >
+      {% set electricusedt1 = states('sensor.electricity_year_t1')|float %}
+      {% set electricusedt2 = states('sensor.electricity_year_t2')|float %}
+      {% set electricceiling = states('sensor.incrementing_electricity_ceiling')|float %}
+      {{ (electricceiling - electricusedt1 - electricusedt2)|float|round(2) }}
+  - name: gas_ceiling
+    unit_of_measurement: 'm3'
+    state: >
+      {% set gasused = states('sensor.gas_year')|float %} 
+      {% set gasceiling = states('sensor.incrementing_gas_ceiling')|float %}
+      {{ (gasceiling - gasused)|float|round(2) }}
+  - name:  electricity_unknown
+    unique_id: electricity_unknown
+    unit_of_measurement: 'kWh'
+    device_class: energy
+    state_class: total
+    state: >
+      {% set electricusedt1 = states('sensor.meter_energy_consumption_tarif_1')|float %}
+      {% set electricusedt2 = states('sensor.meter_energy_consumption_tarif_2')|float %}
+      {% set electricusedknown = states('sensor.gemeten_verbruik')|float %}
+      {{ electricusedt1 + electricusedt2 - electricusedknown }}
+  - name: electricity_avg_cost
+    unique_id: electricity_avg_cost
+    unit_of_measurement: '€'
+    device_class: monetary
+    state_class: total
+    state: >
+      {% set electricity = states('sensor.electricity_year')|float %}
+      {% set cost = states('sensor.elektriciteitskosten')|float %}
+      {{ (cost / electricity)|float|round(2) }}   
+  - name: gas_avg_cost
+    unique_id: gas_avg_cost
+    unit_of_measurement: '€'
+    device_class: monetary
+    state_class: total
+    state: >
+      {% set gas = states('sensor.gas_year')|float %}
+      {% set cost = states('sensor.gaskosten')|float %}
+      {{ (cost / gas)|float|round(2) }}   
+  - name: electricity_avg_co2
+    unique_id: electricity_avg_co2
+    unit_of_measurement: 'g'
+    device_class: weight
+    state_class: total
+    state: >
+      {% set electricity = states('sensor.electricity_year')|float %}
+      {% set co2 = states('sensor.co2_total_emissions')|float %}
+      {{ (co2 / electricity)|float|round(2) }}       

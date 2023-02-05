@@ -1,0 +1,79 @@
+runlevelapp:
+  module: runlevel
+  class: RunlevelApp
+  
+lightapp:
+  module: light
+  class: LightApp
+
+standbyapp:
+  module: standby
+  class: StandbyApp
+
+mediaapp:
+  module: media
+  class: MediaApp
+
+studeerkamerapp:
+  module: studeerkamer
+  class: StudeerkamerApp
+  
+wekkerapp:
+  module: wekker
+  class: WekkerApp
+  
+klimaatapp:
+  module: klimaat
+  class: KlimaatApp
+
+ventilatieapp:
+  module: ventilatie
+  class: VentilatieApp
+
+wasmachineapp:
+  module: wasmachine
+  class: WasmachineApp
+  
+drogerapp:
+  module: droger
+  class: DrogerApp
+  
+wasmachinedrogerapp:
+  module: wasmachinedroger
+  class: WasmachineDrogerApp
+  
+vaatwasserapp:
+  module: vaatwasser
+  class: VaatwasserApp  
+  
+deurbelapp:
+  module: deurbel
+  class: DeurbelApp  
+  
+alarmapp:
+  module: alarm
+  class: AlarmApp 
+  
+batteryapp:
+  module: battery
+  class: BatteryApp   
+  
+afvalapp:
+  module: afval
+  class: AfvalApp
+  
+googlealiveapp:
+  module: googlealive
+  class: GoogleAliveApp
+  
+prijsplafondapp:
+  module: prijsplafond
+  class: PrijsplafondApp
+  
+miscapp:
+  module: misc
+  class: MiscApp
+ 
+remoteapp:
+  module: remote
+  class: RemoteApp  

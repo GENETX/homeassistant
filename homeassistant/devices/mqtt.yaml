@@ -1,0 +1,102 @@
+sensor:
+# APPDAEMON SENSORS
+  - name: "Laatste was"
+    unique_id: wasmachine_last_run
+    state_topic: "homeassistant/sensor/wasmachine/last_run"
+ 
+  - name: "Laatste was info"
+    unique_id: wasmachine_last_run_info
+    state_topic: "homeassistant/sensor/wasmachine/last_run/info"
+  
+  - name: "Laatste droging"
+    unique_id: droger_last_run
+    state_topic: "homeassistant/sensor/droger/last_run"
+ 
+  - name: "Laatste droging info"
+    unique_id: droger_last_run_info
+    state_topic: "homeassistant/sensor/droger/last_run/info"
+  
+  - name: "Laatste vaatwas"
+    unique_id: vaatwasser_last_run
+    state_topic: "homeassistant/sensor/vaatwasser/last_run"
+ 
+  - name: "Laatste vaatwas info"
+    unique_id: vaatwasser_last_run_info
+    state_topic: "homeassistant/sensor/vaatwasser/last_run/info"
+    
+  - name: "elektriciteitskosten"
+    unique_id: plafond_elektriciteitskosten_mqtt
+    state_topic: "homeassistant/sensor/plafond/electricity_costs"
+    unit_of_measurement: €
+    state_class: total
+    device_class: monetary
+
+  - name: "elektriciteitskosten_plafondvoordeel"
+    unique_id: elektriciteitskosten_plafondvoordeel_mqtt
+    state_topic: "homeassistant/sensor/plafond/electricity_discount"
+    unit_of_measurement: €
+    state_class: total
+    device_class: monetary
+    
+  - name: "gaskosten"
+    unique_id: plafond_gaskosten_mqtt
+    state_topic: "homeassistant/sensor/plafond/gas_costs"
+    unit_of_measurement: €
+    state_class: total
+    device_class: monetary
+
+  - name: "gaskosten_plafondvoordeel"
+    unique_id: gaskosten_plafondvoordeel_mqtt
+    state_topic: "homeassistant/sensor/plafond/gas_discount"
+    unit_of_measurement: €
+    state_class: total
+    device_class: monetary   	
+    
+  - name: "zonneplan_current_co2"
+    unique_id: zonneplan_current_co2
+    state_topic: "homeassistant/sensor/zonneplan/co2"
+    unit_of_measurement: g
+    state_class: measurement
+    device_class: weight 	  
+    
+  - name: "current_hourly_gas_price_zonneplan"
+    unique_id: current_hourly_gas_price_zonneplan
+    state_topic: "homeassistant/sensor/zonneplan/gas_price"
+    unit_of_measurement: €
+    state_class: measurement
+    device_class: monetary 	  
+    
+  - name: "co2_total_emissions"
+    unique_id: energy_total_emissions
+    state_topic: "homeassistant/sensor/energy/co2_total"
+    unit_of_measurement: g
+    state_class: total
+    device_class: weight 	  
+    
+  - name: "co2_current_emissions"
+    unique_id: co2_current_emissions
+    state_topic: "homeassistant/sensor/energy/co2_current"
+    unit_of_measurement: g
+    state_class: measurement
+    device_class: weight 	  
+    
+    
+    
+    
+# DEURBEL    
+  - name: "Deurbel Knop"
+    unique_id: deurbel_input
+    state_topic: "shellies/shellydeurbel/input/0"
+
+  # - name: "co2_current_emissions"
+    # unique_id: co2_current_emissions
+    # state_topic: "shellies/shellydeurbel/relay/0"  
+
+switch:
+  - name: "Deurbel"
+    unique_id: "deurbel_ring"
+    payload_on: "on"
+    payload_off: "off"
+    state_topic: "shellies/shellydeurbel/relay/0"
+    command_topic: "shellies/shellydeurbel/relay/0/command"
+    json_attributes_topic: "shellies/shellydeurbel/info"

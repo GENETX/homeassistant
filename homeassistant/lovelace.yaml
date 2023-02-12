@@ -778,7 +778,7 @@ views:
                 type: column
                 float_precision: 2
                 data_generator: |
-                  return entity.attributes.forcast.map((entry) => {
+                  return entity.attributes.forecast.map((entry) => {
                      return [new Date(entry.datetime), entry.electricity_price / 10000000];
                    });
             yaxis:
@@ -826,7 +826,7 @@ views:
                 type: column
                 float_precision: 2
                 data_generator: |
-                  return entity.attributes.forcast.map((entry) => {
+                  return entity.attributes.forecast.map((entry) => {
                      return [new Date(entry.datetime), entry.carbon_footprint_in_grams/10];
                    });
             yaxis:
@@ -1410,7 +1410,7 @@ views:
                 type: column
                 float_precision: 2
                 data_generator: |
-                  return entity.attributes.forcast.map((entry) => {
+                  return entity.attributes.forecast.map((entry) => {
                      return [new Date(entry.datetime), entry.electricity_price / 10000000];
                    });
             yaxis:
@@ -1458,7 +1458,7 @@ views:
                 type: column
                 float_precision: 2
                 data_generator: |
-                  return entity.attributes.forcast.map((entry) => {
+                  return entity.attributes.forecast.map((entry) => {
                      return [new Date(entry.datetime), entry.carbon_footprint_in_grams/10];
                    });
             yaxis:

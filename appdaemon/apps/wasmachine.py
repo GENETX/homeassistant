@@ -172,7 +172,7 @@ class WasmachineApp(hass.Hass):
 			
 	#### Data processing
 			# Process the data
-			for element in zp['attributes']['forcast']:
+			for element in zp['attributes']['forecast']:
 				timeElement = int(parser.parse(element['datetime']).timestamp())
 				for i in range(0, int(3600/self.timestep)):
 				

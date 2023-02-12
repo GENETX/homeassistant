@@ -29,6 +29,7 @@ class RunlevelApp(hass.Hass):
 							'c0932610-976c-11ed-a8fc-0242ac120002_10167_61958'
 						]
 	
+	
 		self.rlTimer = None
 		self.time_delay = None
 		
@@ -314,7 +315,7 @@ class RunlevelApp(hass.Hass):
 								pass
 						
 						# set the reenable timer
-						self.rlTimer = self.run_in(self.enable_autorunlevel, 3600)
+						self.rlTimer = self.run_in(self.timer_enable_autorunlevel, 3600)
 					
 				# Setting runlevel to home
 				if new == "brightness_move_up" and rl < const.rlHome:

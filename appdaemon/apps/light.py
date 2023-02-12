@@ -48,10 +48,10 @@ class LightApp(hass.Hass):
 		
 		# Buttons
 		self.listen_state(self.schakelaar_keuken, "sensor.schakelaar_keuken_action")
-		self.listen_state(self.schakelaar_voor, "sensor.thuisschakelaar_voor_click")
-		self.listen_state(self.schakelaar_achter, "sensor.thuisschakelaar_achter_click")
+		self.listen_state(self.schakelaar_voor, "sensor.thuisschakelaar_voor_action")
+		self.listen_state(self.schakelaar_achter, "sensor.thuisschakelaar_achter_action")
 
-		# State
+		# State 
 		self.listen_state(self.runlevel_changed, "input_number.runlevel")
 		
 		# Manual hal+overloop
@@ -273,7 +273,7 @@ class LightApp(hass.Hass):
 			self.override_motion = True
 			self.override_motion_overloop = True
 			self.override_motion_hal = True
-			self.turn_on("light.group_hal", brightness=0.9*0.9*255)
+			self.turn_on("light.group_hal", brightness=0.9*255)
 			self.turn_on("light.group_overloop", brightness=0.9*255)
 		if new == "off":
 			self.override_motion = False

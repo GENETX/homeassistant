@@ -77,3 +77,9 @@ miscapp:
 remoteapp:
   module: remote
   class: RemoteApp  
+  
+co2monitorapp:
+  module: co2monitor
+  class: Co2monitorApp
+  
+  

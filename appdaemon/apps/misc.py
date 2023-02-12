@@ -88,7 +88,7 @@ class MiscApp(hass.Hass):
 				
 			ts = int(time.time())
 			
-			for element in zp['attributes']['forcast']:
+			for element in zp['attributes']['forecast']:
 				if 'gas_price' in element:
 					if int(parser.parse(element['datetime']).timestamp()) <= ts:
 						gp = element['gas_price']/10000000
@@ -113,7 +113,7 @@ class MiscApp(hass.Hass):
 				
 			ts = int(time.time())
 			
-			for element in zp['attributes']['forcast']:
+			for element in zp['attributes']['forecast']:
 				if 'carbon_footprint_in_grams' in element:
 					if int(parser.parse(element['datetime']).timestamp()) <= ts:
 						co2 = element['carbon_footprint_in_grams']/10
@@ -133,7 +133,7 @@ class MiscApp(hass.Hass):
 			co2 = []
 			prices = []
 			
-			for element in zp['attributes']['forcast']:
+			for element in zp['attributes']['forecast']:
 				# check if we are an element of today
 				d = parser.parse(element['datetime']).strftime("%d-%m-%Y")
 				t = datetime.datetime.now().strftime("%d-%m-%Y")
